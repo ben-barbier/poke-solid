@@ -7,7 +7,9 @@ loadPokemons();
 export const Pokemons: Component = () => (
     <>
         <div class="flex flex-wrap justify-evenly gap-4">
-            <For each={pokemons()}>{pokemon => <PokemonCard pokemon={pokemon}></PokemonCard>}</For>
+            <For each={pokemons()} fallback={<div>Loading...</div>}>
+                {pokemon => <PokemonCard pokemon={pokemon}></PokemonCard>}
+            </For>
         </div>
         <div class="text-center pt-4">
             <button type="button" class="btn btn-primary" onClick={loadMorePokemons}>
