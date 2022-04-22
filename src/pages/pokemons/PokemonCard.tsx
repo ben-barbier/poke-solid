@@ -1,5 +1,6 @@
 import { Component } from 'solid-js';
 import { Pokemon } from 'pokenode-ts';
+import { isInCart, toggleToCart } from '../../store/cart';
 
 export const PokemonCard: Component<{ pokemon: Pokemon }> = props => {
     return (
@@ -15,7 +16,12 @@ export const PokemonCard: Component<{ pokemon: Pokemon }> = props => {
                 <h2 class="card-title">{props.pokemon.name}</h2>
                 <p>ID: {props.pokemon.id}</p>
                 <div class="card-actions justify-end">
-                    <button type="button" class="btn btn-primary">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        onClick={[toggleToCart, props.pokemon]}
+                        style={{ 'background-color': isInCart(props.pokemon) ? '#ff4081' : null }}
+                    >
                         <span class="material-icons">favorite</span>
                     </button>
                 </div>
