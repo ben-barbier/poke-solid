@@ -1,4 +1,5 @@
 import { Component } from 'solid-js';
+import { Link } from 'solid-app-router';
 
 export const Sidebar: Component = () => {
     return (
@@ -7,10 +8,13 @@ export const Sidebar: Component = () => {
             <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                 {/*Sidebar content here */}
                 <li>
-                    <a>Page 1</a>
+                    <Link href="/">Home</Link>
                 </li>
                 <li>
-                    <a>Page 2</a>
+                    <Link href="/pokemons">Pokemons</Link>
+                </li>
+                <li>
+                    <Link href="/admin">Admin</Link>
                 </li>
             </ul>
         </>
