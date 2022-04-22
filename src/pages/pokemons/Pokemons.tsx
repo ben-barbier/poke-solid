@@ -1,8 +1,7 @@
-import { NamedAPIResource, Pokemon, PokemonClient } from 'pokenode-ts';
-import { Component, createSignal, For } from 'solid-js';
+import { NamedAPIResource, PokemonClient } from 'pokenode-ts';
+import { Component, For } from 'solid-js';
 import { PokemonCard } from './PokemonCard';
-
-const [pokemons, setPokemons] = createSignal<Pokemon[]>([]);
+import { pokemons, setPokemons } from '../../store/pokemons';
 
 (async () => {
     const api = new PokemonClient();
