@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import { cart } from '../store/cart';
+import { cart, clearCart } from '../store/cart';
 
 export const Header: Component = () => {
     return (
@@ -14,9 +14,12 @@ export const Header: Component = () => {
                     <a class="btn btn-ghost normal-case text-xl">Poke Solid</a>
                 </div>
                 <div class="flex-none">
-                    <button class="btn btn-square btn-ghost">
+                    <div class="btn btn-square btn-ghost">
                         <span class="material-icons">shopping_basket</span>
                         <span>{cart().length}</span>
+                    </div>
+                    <button class="btn btn-square btn-warning" onClick={clearCart}>
+                        <span class="material-icons">remove_shopping_cart</span>
                     </button>
                 </div>
             </div>
