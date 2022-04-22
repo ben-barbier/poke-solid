@@ -1,6 +1,6 @@
-import { createSignal } from 'solid-js';
+import { createEffect, createSignal } from 'solid-js';
 import { NamedAPIResource, Pokemon, PokemonClient } from 'pokenode-ts';
-import { cart, setCart } from './cart';
+import { cart, removeFromCart, setCart } from './cart';
 
 export const [pokemons, setPokemons] = createSignal<Pokemon[]>([]);
 
@@ -21,3 +21,14 @@ export const loadMorePokemons = (): Promise<void> => {
     offset += ITEMS_PER_PAGE;
     return loadPokemons();
 };
+
+createEffect(() => {
+    const pokemonFromCartThatHasBeenDeleted: Pokemon[] = cart().filter(
+        cartPokemon =>
+            !pokemons()
+                .map(pokemon => pokemon.id)
+                .includes(cartPokemon.id),
+    );
+
+    pokemonFromCartThatHasBeenDeleted.forEach(p => removeFromCart(p));
+});
