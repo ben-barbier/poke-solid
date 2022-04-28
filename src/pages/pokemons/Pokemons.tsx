@@ -1,18 +1,19 @@
 import { Component, For } from 'solid-js';
 import { PokemonCard } from './PokemonCard';
-import { loadMorePokemons, loadPokemons, pokemons } from '../../store/pokemons';
+import { increasePokemonsResourcePage, pokemons, pokemonsResource } from '../../store/pokemons';
 
-loadPokemons();
+// SUSPENSE => SHOW
+// loadPokemons();
 
 export const Pokemons: Component = () => (
     <>
         <div class="flex flex-wrap justify-evenly gap-4">
-            <For each={pokemons()} fallback={<progress class="progress progress-info w-56"></progress>}>
+            <For each={pokemonsResource()} fallback={<progress class="progress progress-info w-56"></progress>}>
                 {pokemon => <PokemonCard pokemon={pokemon}></PokemonCard>}
             </For>
         </div>
         <div class="text-center pt-4">
-            <button type="button" class="btn btn-primary" onClick={loadMorePokemons}>
+            <button type="button" class="btn btn-primary" onClick={increasePokemonsResourcePage}>
                 Load more...
             </button>
         </div>
