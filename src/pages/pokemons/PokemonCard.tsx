@@ -5,25 +5,27 @@ import { deletePokemon } from '../../store/pokemons';
 
 export const PokemonCard: Component<{ pokemon: Pokemon }> = props => {
     return (
-        <div class="card card-compact w-96 bg-base-100 shadow-xl">
-            <figure>
+        <div class="card card-compact w-80 bg-base-100 shadow-xl">
+            <figure class="px-10 pt-10">
                 <img
-                    style="max-height: 200px;"
-                    src={props.pokemon.sprites.other.dream_world.front_default ?? ''}
-                    alt="Sprite"
+                    class="rounded-xl"
+                    src={props.pokemon.sprites.other['official-artwork'].front_default ?? ''}
+                    alt={props.pokemon.name}
                 />
             </figure>
-            <div class="card-body">
+            <div class="card-body items-center text-center">
                 <h2 class="card-title">{props.pokemon.name}</h2>
-                <p>ID: {props.pokemon.id}</p>
-                <div class="card-actions justify-end">
-                    <button type="button" class="btn btn-error" onClick={[deletePokemon, props.pokemon]}>
+                <p>Id: {props.pokemon.id}</p>
+                <p>Height: {props.pokemon.height}</p>
+                <p>Weight: {props.pokemon.weight}</p>
+                <div class="card-actions">
+                    <button type="button" class="btn btn-error" onClick={() => deletePokemon(props.pokemon)}>
                         <span class="material-icons">delete</span>
                     </button>
                     <button
                         type="button"
                         class="btn btn-primary"
-                        onClick={[toggleToCart, props.pokemon]}
+                        onClick={() => toggleToCart(props.pokemon)}
                         style={{ 'background-color': isInCart(props.pokemon) ? '#ff4081' : null }}
                     >
                         <span class="material-icons">favorite</span>

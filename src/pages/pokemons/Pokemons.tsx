@@ -7,7 +7,7 @@ loadPokemons();
 export const Pokemons: Component = () => (
     <>
         <div class="flex flex-wrap justify-evenly gap-4">
-            <For each={pokemons()} fallback={<div>Loading...</div>}>
+            <For each={pokemons()} fallback={<progress class="progress progress-info w-56"></progress>}>
                 {pokemon => <PokemonCard pokemon={pokemon}></PokemonCard>}
             </For>
         </div>
